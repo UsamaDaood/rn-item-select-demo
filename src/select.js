@@ -34,6 +34,7 @@ class Select extends Component {
                 <StatusBar backgroundColor="#3cb34d" barStyle="light-content" />
 
                 <ReactNativeItemSelect
+                    // countPerRow={3}
                     data={languageData}
                     itemComponent={
                         item => (

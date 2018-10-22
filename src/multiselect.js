@@ -22,6 +22,7 @@ class MultiSelect extends Component {
         headerLeft: null,
     };
 
+
     static itemComponent(item, isSelected) {
         return (
             <ImageBackground
@@ -30,7 +31,7 @@ class MultiSelect extends Component {
                     width: 160,
                     height: 160,
                 }}
-                source={{ uri: item.url }}
+                source={item.uri}
             >
                 <View style={{
                     flexShrink: 1, backgroundColor: 'rgba(255,255,255, 0.7)',
@@ -67,7 +68,7 @@ class MultiSelect extends Component {
                 <ReactNativeItemSelect
                     multiselect
                     countPerRow={2}
-                    maxSelectCount={5}
+                    minSelectCount={3}
                     floatSubmitBtn
                     styles={{
                         rowWrapper: { justifyContent: 'space-around', marginTop: 20, marginHorizontal: 10 },

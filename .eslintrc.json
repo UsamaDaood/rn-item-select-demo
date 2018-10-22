@@ -30,6 +30,7 @@
         "react/prop-types": 0,
         "react/no-did-update-set-state": 0,
         "import/no-dynamic-require": 0,
-        "jsx-a11y/accessible-emoji": "off"
+        "jsx-a11y/accessible-emoji": "off",
+        "global-require": "off"
     }
 }
