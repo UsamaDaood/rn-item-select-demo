@@ -45,4 +45,11 @@ export default StyleSheet.create({
         borderRadius: 15,
         backgroundColor: '#F5FCFF',
     },
+    textbox: {
+        paddingLeft: 20,
+        marginTop: 15,
+        marginHorizontal: 20,
+        borderRadius: 10,
+        backgroundColor: '#EFE',
+    },
 });

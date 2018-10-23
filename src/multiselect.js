@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    ImageBackground, StatusBar, StyleSheet, Text, View,
+    ImageBackground, StatusBar, StyleSheet, Text, TextInput, View,
 } from 'react-native';
 import ReactNativeItemSelect from 'react-native-item-select';
 
@@ -21,7 +21,6 @@ class MultiSelect extends Component {
         },
         headerLeft: null,
     };
-
 
     static itemComponent(item, isSelected) {
         return (
@@ -57,18 +56,42 @@ class MultiSelect extends Component {
         );
     }
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: '',
+            cropList: cropData,
+        };
+    }
+
+    filterCropList(text) {
+        this.setState({
+            cropList: cropData.filter(crop => crop.name.toLowerCase().indexOf(text.toLowerCase()) !== -1),
+            text,
+        });
+    }
+
     render() {
-        const { container } = style;
+        const { container, textbox } = style;
+        const { text, cropList } = this.state;
         const { navigation: { navigate } } = this.props;
 
         return (
             <View style={container}>
                 <StatusBar backgroundColor="#db1368" barStyle="light-content" />
+                <TextInput
+                    onChangeText={txt => this.filterCropList(txt)}
+                    placeholder="🔍 Type something here to search"
+                    returnKeyType="search"
+                    style={textbox}
+                    value={text}
+                />
 
                 <ReactNativeItemSelect
                     multiselect
                     countPerRow={2}
                     minSelectCount={3}
+                    searchKey="name"
                     floatSubmitBtn
                     styles={{
                         rowWrapper: { justifyContent: 'space-around', marginTop: 20, marginHorizontal: 10 },
@@ -81,7 +104,7 @@ class MultiSelect extends Component {
                         tickTxt: { backgroundColor: '#c51a11' },
                     }}
                     lastRowMargin={65}
-                    data={cropData}
+                    data={cropList}
                     itemComponent={MultiSelect.itemComponent}
                     onSubmit={item => navigate('Result', { selectedItem: item })}
                 />
